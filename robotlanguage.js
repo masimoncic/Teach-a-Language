@@ -1,20 +1,20 @@
 //these need to be objects, not arrays
 
 const nouns = [
-    {name: 'n1', dividend: 10}
-    {name: 'n2', dividend: 10}
-    {name: 'n3', dividend: 10}
+    {name: 'n1', freq: 10}
+    {name: 'n2', freq: 10}
+    {name: 'n3', freq: 10}
 ]
 
 const determiners = [
-    {name: 'the', dividend: 10},
-    {name: 'a', dividend: 10},
-    {name: 'some', dividend: 2},
-    {name: 'every', dividend: 2},
-    {name: 'all', dividend: 1},
-    {name: 'several', dividend: 1},
-    {name: 'most', dividend: 1},
-    {name: 'few', dividend: 2}
+    {name: 'the', freq: 10, banned: []},
+    {name: 'a', freq: 10, banned: []},
+    {name: 'some', freq: 2, banned: []},
+    {name: 'every', freq: 2, banned: []},
+    {name: 'all', freq: 1, banned: []},
+    {name: 'several', freq: 1, banned: []},
+    {name: 'most', freq: 1, banned: []},
+    {name: 'few', freq: 2, banned: []}
 ]
 
 function increaseCount(obj, word, count) {
@@ -27,7 +27,7 @@ function randomWord(arr, banCheck) {
     let lower = 0;
     randNum = Math.random();
     for (let i in arr) {
-        divisor += i.dividend;
+        divisor += i.freq;
     }
     for (let j in arr) {
         let quotient = arr[j] / divisor;

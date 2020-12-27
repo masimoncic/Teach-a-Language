@@ -1,19 +1,27 @@
 
 const assert = require('assert');
 const { isMainThread } = require('worker_threads');
-const { randomWord } = require('./randomSentence');
+const { randomWord, randomSentence } = require('./randomSentence');
 
 
-let noun1 = randomWord(nouns);
-let det1 = '';
-let verb = '';
-let noun2 = '';
-let adj1 = '';
-let adj2 = '';
-let adv = '';
-let det2 = '';
 
+it('Generate Random Sentence', () =>
 
-it('Generate Random Sentence', () => {
-  let nouns = 
+function testRandomSentence() {
+  {
+    let nouns = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+    let determiners = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+    let transitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+    let intransitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+    let adjectives = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+    let adverbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+    {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+  }
+
+  randomSentence();
 }
