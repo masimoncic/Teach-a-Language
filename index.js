@@ -25,8 +25,8 @@ function randomWord(arr, banCheck=[]) {
   return '';
 }
 
-let testData = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
-{name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
+let testData = [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
+{name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}];
 
 let freqCount = {'a':0, 'b':0, 'c':0, 'd':0};
 for (i=0; i < 1000; i++) {
