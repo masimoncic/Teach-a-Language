@@ -134,8 +134,24 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
   },
 
   
-
   randomSentence () {
+    let sentenceArray = []
+    let sentence1 = this.randomSentenceHelper();
+    sentenceArray.push(sentence1);
+    let num = Math.random();
+    while(num > 0.7) {
+      let conj = this.randomWord(this.conjunctions);
+      sentenceArray.push(conj);
+      tempSentence = this.randomSentenceHelper();
+      sentenceArray.push(tempSentence);
+      num = Math.random();
+    }
+    joinedSentence = sentenceArray.join(' ');
+    fullSentence = joinedSentence[0].toUpperCase() + joinedSentence.slice(1, joinedSentence.length -1) + '.';
+    return fullSentence;
+  },
+
+  randomSentenceHelper () {
     let noun1 = this.randomWord(this.nouns) + ' ';
     let det1 = '';
     let verb = '';
@@ -177,8 +193,8 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
           intens3 = this.randomWord(this.intensifiers, adv) + ' ';
         }
     }
-    let sent = det1 + intens1 + adj1 + noun1 + verb + intens3 + adv + det2 + intens2 + adj2 + noun2;
-    return sent[0].toUpperCase() + sent.slice(1, sent.length-1) +'.';
+    let sentence = det1 + intens1 + adj1 + noun1 + verb + intens3 + adv + det2 + intens2 + adj2 + noun2;
+    return sentence.slice(0, sentence.length -1) + ',';
   }
 
 }
