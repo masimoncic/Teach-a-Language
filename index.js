@@ -1,4 +1,11 @@
-function randomWord(arr, banCheck=null) {
+/*the language object (defined in language.js) handles generating random sentences
+and storing all word data.
+
+*/
+
+"use strict";
+
+/*function randomWord(arr, banCheck=null) {
   function randomWordHelper(arr, banCheck=null) {
     let divisor = 0;
     let upper = 0;
@@ -30,22 +37,29 @@ function randomWord(arr, banCheck=null) {
   }
   return val;
 }
+*/
 
-/*let testData = [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
+
+//for testing 
+
+/*
+language.nouns = [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
 {name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}];
 
 let freqCount = {'a':0, 'b':0, 'c':0, 'd':0};
-for (i=0; i < 1000; i++) {
-  let temp = randomWord(testData, 'g4');
+for (let i=0; i < 1000; i++) {
+  let temp = language.randomWord(language.nouns, 'g4');
   freqCount[temp] += 1;
 }
 console.log(freqCount);
 */
 
 
-let nouns = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
-{name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
-const determiners = [
+//for testing
+
+language.nouns = [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
+{name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}];
+language.determiners = [
   {name: 'the', freq: 10, banned: []},
   {name: 'a', freq: 10, banned: []},
   {name: 'some', freq: 2, banned: []},
@@ -55,15 +69,15 @@ const determiners = [
   {name: 'most', freq: 1, banned: []},
   {name: 'few', freq: 2, banned: []}
 ]
-let transitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+language.transitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
 {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
-let intransitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+language.intransitiveVerbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
 {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
-let adjectives = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+language.adjectives = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
 {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
-let adverbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
+language.adverbs = [{name: 'a', freq: 25, banned: []}, {name: 'b', freq: 25, banned: []}, 
 {name: 'c', freq: 25, banned: []}, {name: 'd', freq: 25, banned: []}];
-let intensifiers = [
+language.intensifiers = [
   {name: 'astoundingly', freq: 10, banned: []},
   {name: 'crazy', freq: 10, banned: []},
   {name: 'dreadfully', freq: 10, banned: []},
@@ -83,7 +97,7 @@ let intensifiers = [
 
 ]
 
-
+/*
 function randomSentence() {
   let noun1 = randomWord(nouns);
   let det1 = '';
@@ -129,11 +143,17 @@ function randomSentence() {
   let sent = det1 + intens1 + adj1 + noun1 + verb + intens3 + adv + det2 + intens2 + adj2 + noun2;
   return sent[0].toUpperCase() + sent.slice(1);
 }
+*/
+
+
+//for testing
 
 let sum = 0;
-for (i=0; i<100; i++) {
-  temp = randomSentence();
+for (let i=0; i<100; i++) {
+  let temp = language.randomSentence();
   sum += temp.length;
   console.log(temp);
 }
 console.log(sum/100);
+
+
