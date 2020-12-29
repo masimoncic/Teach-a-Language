@@ -1,9 +1,97 @@
 /*the language object (defined in language.js) handles generating random sentences
 and storing all word data.
+functionality related to the initial word input is handled with the startingWords object, 
+defined in start.js.
 
 */
-
 "use strict";
+
+
+//bind all necessary functions from start.js
+let boundIntrans = startingWords.createIntrans.bind(startingWords);
+let boundTrans = startingWords.createTrans.bind(startingWords);
+let boundAdj = startingWords.createAdj.bind(startingWords);
+let boundAdv = startingWords.createAdv.bind(startingWords);
+//initialize starting sequence
+startingWords.createNouns();
+
+/*
+function placeholderFunction (e) {
+  e.preventDefault();
+}
+form.addEventListener('submit', placeholderFunction)
+*/
+
+function testSent () {
+  let sum = 0;
+  for (let i=0; i<100; i++) {
+    let temp = language.randomSentence();
+    sum += temp.length;
+    console.log(temp);
+  }
+  console.log(sum/100);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //for testing 
@@ -21,7 +109,7 @@ console.log(freqCount);
 
 
 //for testing
-
+/*
 language.nouns = [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
 {name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}];
 language.determiners = [
@@ -78,4 +166,5 @@ for (let i=0; i<100; i++) {
 }
 console.log(sum/100);
 
+*/
 

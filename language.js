@@ -1,8 +1,5 @@
 const language = {
   
-  
-  
-  /*
   determiners: [
     {name: 'the', freq: 10, banned: []},
     {name: 'a', freq: 10, banned: []},
@@ -32,13 +29,21 @@ const language = {
     {name: 'a bit', freq: 10, banned: []},
   
   ],
+  conjunctions : [
+    {name: 'and', freq: 10, banned: []},
+    {name: 'or', freq: 10, banned: []},
+    {name: 'if', freq: 10, banned: []},
+    {name: 'when', freq: 10, banned: []},
+    {name: 'because', freq: 20, banned: []},
+    {name: 'but', freq: 10, banned: []},
+  ],
   adjectives: [],
   nouns : [],
   transitiveVerbs: [],
   intransitiveVerbs: [],
   adverbs: [],
-*/
   // for testing
+/*
     determiners: [
     {name: 'the', freq: 10, banned: []},
     {name: 'a', freq: 10, banned: []},
@@ -78,7 +83,7 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
 {name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}],
   adverbs: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned: ['g2']}, 
 {name: 'c', freq: 25, banned: ['g3']}, {name: 'd', freq: 25, banned: ['g4']}],
-
+*/
 
 
 
@@ -163,7 +168,7 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
     let intens1 = '';
     let intens2 = '';
     let intens3 = '';
-    if (Math.random() > 0.4) {
+    if (Math.random() > 0.3) {
         det1 = this.randomWord(this.determiners, noun1) + ' ';
     }
     if (Math.random() > 0.45) {
@@ -181,7 +186,7 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
               intens2 = this.randomWord(this.intensifiers, adj2) + ' ';
             }
         }
-        if (Math.random() > 0.4) {
+        if (Math.random() > 0.3) {
             det2 = this.randomWord(this.determiners, noun2) + ' ';
         }
     } else {
