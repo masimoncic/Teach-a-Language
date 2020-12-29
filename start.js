@@ -152,6 +152,7 @@ startingWords = {
     let currentButton = document.getElementById('start-adverbs-button');
     currentButton.removeEventListener('click', startingWords.handleAdv);
 
+    
   },
 
 

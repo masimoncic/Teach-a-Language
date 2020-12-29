@@ -5,13 +5,15 @@ defined in start.js.
 
 */
 "use strict";
+//set constants for loop.js
 
 
-//bind all necessary functions from start.js
+//bind all necessary functions
 let boundIntrans = startingWords.createIntrans.bind(startingWords);
 let boundTrans = startingWords.createTrans.bind(startingWords);
 let boundAdj = startingWords.createAdj.bind(startingWords);
 let boundAdv = startingWords.createAdv.bind(startingWords);
+let boundLoop = loop.loopIteration.bind(loop);
 //initialize starting sequence
 startingWords.createNouns();
 
