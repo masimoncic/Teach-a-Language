@@ -29,7 +29,7 @@ body {
 p {
   position: fixed;
   height: 7.5em;
-  width: 30em;
+  width: 25em;
   top: 5vh;
   left: 25vw;
   padding: 0.5em;
@@ -64,11 +64,12 @@ h1 {
 }
 
 button {
-  position: relative;
-  height: 1.8em;
-  width: 12em;
+  display: block;
+  height: auto;
+  width: 15em;
   left: 1em;
-  font-size: 1.8em;
+  font-size: 1.35em;
+  margin-top: 1em;;
 }
 
 button:hover {

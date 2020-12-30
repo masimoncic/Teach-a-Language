@@ -1,5 +1,7 @@
 const language = {
   
+  complexity: 0,
+  
   determiners: [
     {name: 'the', freq: 10, banned: []},
     {name: 'a', freq: 10, banned: []},
@@ -178,8 +180,8 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
         }
     }
     if (Math.random() > 0.35) {
-        verb = this.randomWord(this.transitiveVerbs) + ' ';
-        noun2 = this.randomWord(this.nouns) + ' ';
+        verb = this.randomWord(this.transitiveVerbs, noun1) + ' ';
+        noun2 = this.randomWord(this.nouns, verb) + ' ';
         if (Math.random() > 0.45) {
             adj2 = this.randomWord(this.adjectives, noun2) + ' ';
             if(Math.random() > 0.7) {
@@ -190,7 +192,7 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
             det2 = this.randomWord(this.determiners, noun2) + ' ';
         }
     } else {
-        verb = this.randomWord(this.intransitiveVerbs) + ' ';
+        verb = this.randomWord(this.intransitiveVerbs, noun1) + ' ';
     }
     if (Math.random() > 0.45) {
         adv = this.randomWord(this.adverbs, verb) + ' ';

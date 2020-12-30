@@ -1,3 +1,5 @@
+
+
 startingWords = {
   //createForm is a helper function for our other functions.
   //It will create a form with n amount of inputs for the given word type.
@@ -151,7 +153,8 @@ startingWords = {
 
     let currentButton = document.getElementById('start-adverbs-button');
     currentButton.removeEventListener('click', startingWords.handleAdv);
-
+    formContainer.innerHTML = '';
+    randomizeOptionButtons();
     
   },
 

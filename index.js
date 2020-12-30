@@ -6,14 +6,16 @@ defined in start.js.
 */
 "use strict";
 //set constants for loop.js
-
-
+const loopOptionsContainer = document.getElementById('loop-options-container');
+const loopSubmitContainer = document.getElementById('loop-submit-container');
+const loopContainer = document.getElementById('loop-container');
+const sentenceBox = document.getElementById('sentence-box');
 //bind all necessary functions
 let boundIntrans = startingWords.createIntrans.bind(startingWords);
 let boundTrans = startingWords.createTrans.bind(startingWords);
 let boundAdj = startingWords.createAdj.bind(startingWords);
 let boundAdv = startingWords.createAdv.bind(startingWords);
-let boundLoop = loop.loopIteration.bind(loop);
+//let boundLoop = loop.loopIteration.bind(loop);
 //initialize starting sequence
 startingWords.createNouns();
 
