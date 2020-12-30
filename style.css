@@ -30,12 +30,12 @@ p {
   position: fixed;
   height: 7.5em;
   width: 25em;
-  top: 5vh;
+  top: 3vh;
   left: 25vw;
   padding: 0.5em;
   background-color: rgba(255, 255, 255, .7);
   z-index: 10;
-  font-size: 1.8em;
+  font-size: 1.4em;
   border-radius: 5px;
 }
 
@@ -43,7 +43,7 @@ p {
 .form-container {
   position:fixed;
   left: 4vw;
-  top: 35vh;
+  top: 30vh;
 
 
 
@@ -51,10 +51,10 @@ p {
 }
 input {
   display: block;
-  height: 1.8em;
-  width: 12em;
-  margin: 1em;
-  font-size: 1.8em;
+  height: 1.3em;
+  width: 10em;
+  margin: .7em;
+  font-size: 1.2em;
   border-radius: 5px;
 }
 
@@ -66,9 +66,9 @@ h1 {
 button {
   display: block;
   height: auto;
-  width: 15em;
-  left: 1em;
-  font-size: 1.35em;
+  width: 10em;
+  left: 1.5em;
+  font-size: 1.2em;
   margin-top: 1em;;
 }
 
