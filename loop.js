@@ -1,248 +1,238 @@
+
+/*
+the loop proceeds as follows: 
+Stage 1: randomizeOptionButtons is called to
+give the user 4 options; the helper function createOptionButton calls 
+loopOptionButtonHandler to create event handlers for those options.  
+Stage 2: The user clicks one of the options.  loop.createLoopInputs 
+is called to create 1 or 2 input fields and another button; it then
+returns a function which is passed into the event handler of the
+new button. When the user presses the new button, it runs the function
+it recieved, then runs randomizeOptionButtons again to return to stage 1.
+*/
+
+
 loop = {
 
-  functionFinder: 0,
-
-  //create form and input based on n.  Returns the function that will be
-  //used as an event handler for the submit button.
-  createLoopInputs(n) {
-    let label1= document.createElement('label');
-    label1.for = 'loop-input1';
-    label1.id = 'loop-label1';
-    let input1 = document.createElement('input');
-    input1.setAttribute('type', 'text');
-    input1.id = 'loop-input1';
-    loopSubmitContainer.append(label1, input1);
-      if (n === 0) {
-        label1.innerText = 'Enter a noun';
-        return loopSub.addNoun;
-      }
-      else if (n === 1) {
-        label1.innerText = 'Enter a noun';
-        return loopSub.nounFreq;
-      }
-      else if (n === 2) {
-        label1.innerText = 'Enter an intransitive verb';
-        return loopSub.addTrans;
-      }
-      else if (n === 3) {
-        label1.innerText = 'Enter a transitive verb';
-        return loopSub.addIntrans;
-      }
-      else if (n === 4) {
-        label1.innerText = 'Enter a verb';
-        return loopSub.verbFreq;
-      }
-      else if (n === 5) {
-        label1.innerText = 'Enter an adjective';
-        return loopSub.addAdj
-      }
-      else if (n === 6) {
-        label1.innerText = 'Enter an adjective';
-        return loopSub.adjFreq;
-      }
-      else if (n === 7) {
-        label1.innerText = 'Enter an adverb';
-        return loopSub.addAdv;
-      }
-      else if (n === 8) {
-        label1.innerText = 'Enter an adverb';
-        return loopSub.advFreq;
-      };
-
-        let label2= document.createElement('label');
-        label2.for = 'loop-input2';
-        label2.id = 'loop-label2';
-        let input2 = document.createElement('input');
-        input2.setAttribute('type', 'text');
-        input2.id = 'loop-input2';
-        loopSubmitContainer.append(label2, input2);
-      
-        if (n === 9) {
-          label1.innerText = 'Enter a determiner';
-          label2.innerText = 'Enter a noun';
-          return loopSub.banDetNoun;
-        }
-        else if (n === 10) {
-          label1.innerText = 'Enter an adjective';
-          label2.innerText = 'Enter a noun';
-          return loopSub.banAdjNoun;
-        }
-        else if (n === 11) {
-          label1.innerText = 'Enter a noun';
-          label2.innerText = 'Enter a verb';
-          return loopSub.banNounVerb;
-        }
-        else if (n === 12) {
-          label1.innerText = 'Enter a verb';
-          label2.innerText = 'Enter an adverb';
-          return loopSub.banVerbAdv;
-        }
-        else if (n === 13) {
-          label1.innerText = 'Enter an intensifier';
-          label2.innerText = 'Enter an adjective';
-          return loopSub.banIntAdj;
-        }
-        else if (n === 14) {
-          label1.innerText = 'Enter an intensifier';
-          label2.innerText = 'Enter an adverb';
-          return loopSub.banIntAdv;
-        }
 
 
-    
-    },
+  //helper function for randomizeOptionButtons. Creates the button and defines its
+  //handler.  loopOptionButtonHandler is defined below.
+  createOptionButton(n, str) {
+    let button = document.createElement('button');
+    button.innerText = str;
+    button.class = 'option-button';
+    loopOptionsContainer.appendChild(button);
+    let handler = this.loopOptionButtonHandler(n);
+    let boundHandler = handler.bind(loop);
+    button.addEventListener('click', boundHandler);
+  },
 
-
-  addWord(wordType) {
-    input = document.getElementById('loop-input1');
-    let inputVal = input.value;
-    for (let i=0; i < wordType.length; i++) {
-      if (inputVal === wordType[i].name) {
-        return;
-        //display message
-      }
-
-      //cleanup function
+  randomizeOptionButtons () {
+    //this is the start of the loop, so we generate a new sentence
+    language.complexity += 0.07;
+    sentenceBox.innerText = language.randomSentence();
+    //button 1: nouns
+    if (Math.random() > 0.5) {
+      this.createOptionButton(0, 'Teach a new noun');
     }
-    wordType.push({
-      name: inputVal,
-      freq: 10,
-      banned: [],
-    })
-  },
-
-  /*
-  addNoun() {
-    return loopSub.addWord(language.nouns);
-  },
-
-  addTrans() {
-    return loopSub.addWord(language.transitiveVerbs);
-  },
-
-  addIntrans(){
-    return loopSub.addWord(language.intransitiveVerbs);
-  },
-
-  addAdj() {
-    return loopSub.addWord(language.adjectives);
-  },
-
-  addAdv() {
-    return loopSub.addWord(language.adverbs);
-  },
-  */
-
-  increaseFreq(wordType) {
-    let input = document.getElementById('loop-input1');
-    let inputVal = input.value;
-    for (let i=0; i < wordType.length; i++) {
-      if(wordType[i].name === inputVal) {
-        wordType[i].freq += 10;
-        //clean up function
-        return;
-      }
+    else {
+      this.createOptionButton(1, 'Increase usage frequency of a known noun')
     }
-    //if word not found, display message
-    return;
-  },
 
-  /*
-  verbFreq() {
-    let input = document.getElementById('loop-input1');
-    let inputVal = input.value;
-    for (let word in language.intransitiveVerbs) {
-      if(wordType[i].name === inputVal) {
-        word.freq += 10;
-        //clean up function
-        return;
-      }
+    //button 2: verbs
+    let verbRandom = Math.random();
+
+    if (verbRandom > 0.75) {
+      this.createOptionButton(2, 'Teach a new intransitive verb');
     }
-    for (let word in language.transitiveVerbs) {
-      if(wordType[i].name === inputVal) {
-        wordType[i].freq += 10;
-        //clean up function
-        return;
+    else if (verbRandom > 0.35) {
+      this.createOptionButton(3, 'Teach a new transitive verb');
     }
-    //display message
-    return;
+    else {
+      this.createOptionButton(4, 'Incease the usage frequence of a known verb')
     }
-  },
-*/
-  /*
-  nounFreq() {
-    return loopSub.increaseFreq(language.nouns);
-  },
 
-  adjFreq() {
-    return loopSub.increaseVerbFreq(language.adjectives);
-  },
+    //button 3: Adjectives / Adverbs
+    let adjRandom = Math.random();
 
-  advFreq() {
-    return loopSub.increaseVerbFreq(language.adverbs);
-  },
-  */
-
-  banWord(wordType1, wordType2) {
-    let input = document.getElementById('loop-input1');
-    let inputVal = input.value;
-    let input2 = document.getElementById('loop-input2');
-    let input2Val = input2.value;
-    for (let i=0; i < wordType1.length; i++) {
-      if(wordType1[i].name === inputVal) {
-        wordType1[i].banned.push(input2Val);
-        for(let i=0; i < wordType2.length; i++) {
-          if(wordType2[i].name === input2Val) {
-            wordType2[i].banned.push(inputVal);
-          }
-        }
-      }
+    if (adjRandom > 0.7) {
+      this.createOptionButton(5, 'Teach a new adjective');
     }
-    for (let i=0; i < wordType2.length; i++) {
-      if(wordType2[i].name === inputVal) {
-        wordType2[i].banned.push(inputVal);
-        for(let i=0; i < wordType1.length; i++) {
-          wordType1[i].banned.push(inputVal2);
-        }
-        //clean up function
-      }
+    else if (adjRandom > 0.4) {
+      this.createOptionButton(6, 'Increase the usage frequence of a known adjective');
     }
-    //clean up function
+    else if (adjRandom > 0.2) {
+      this.createOptionButton(7, 'Teach a new adverb');
+    } 
+    else {
+      this.createOptionButton(8, 'Increase the usage frequency of a known adverb');
+    }
+
+    //button 4: bans
+    let banRandom = Math.random();
+
+    if (banRandom > 0.8) {
+      this.createOptionButton(9, 'Ban cominbation: determiner and noun');
+    }
+    else if (banRandom > 0.6) {
+      this.createOptionButton(10, 'Ban combination: adjective and noun');
+    }
+    else if (banRandom > 0.4) {
+      this.createOptionButton(11, 'Ban combination: noun and verb');
+    }
+    else if (banRandom > 0.2) {
+      this.createOptionButton(12, 'Ban combination: verb and adverb');
+    }
+    else if (banRandom > 0.1) {
+      this.createOptionButton(13, 'Ban combination: intensifier and adjective');
+    }
+    else {
+      this.createOptionButton(14, 'Ban combination: intensifier and adverb');
+    }
+
   },
-  /*
-  banVerb(wordType1, wordType2, wordType3) {
-    banWord(wordType1, wordType2);
-    banWord(wordType1, wordType3);
+
+  //defines the handler for the submit button.  It will return run the function 
+  //to update language.js based on the user input; then it clears 
+  //this section of the dom, and calls randomizeOptionButtons to repeat the loop
+  loopSubmitButtonHandler(func) {
+    return function () {
+    func();
+    loopSubmitContainer.innerHTML = '';
+    this.randomizeOptionButtons()};
+
   },
 
-  banDetNoun() {
-    return loopSub.banWord(language.determiners, language.nouns);
+  loopOptionButtonHandler (n) {
+    return function () {
+    loopOptionsContainer.innerHTML = '';
+    button = document.createElement('button');
+    button.id = 'loop-submit-button';
+    button.innerText = 'Submit';
+    //loopSubmitContainer.hidden = false;
+    //add event handler for button
+    let functionForHandler = loopHandlerFunctions.createLoopInputs(n)
+    let handler = this.loopSubmitButtonHandler(functionForHandler);
+    let boundHandler = handler.bind(loop);
+    loopSubmitContainer.appendChild(button);
+    button.addEventListener('click', boundHandler)
+    };
   },
-
-  banAdjNoun() {
-    return loopSub.banWord(language.adjectives, language.nouns);
-  },
-
-  banNounVerb() {
-    return loopSub.banVerb(language.nouns, language.transitiveVerbs, language.intransitiveVerbs);
-  },
-
-  banVerbAdv() {
-    return loopSub.banVerb(language.adverbs, language.transitiveVerbs, language.intransitiveVerbs);
-  },
-
-  banIntAdj() {
-    return loopSub.banWord(language.intensifiers, language.adjectives);
-  },
-
-  banIntAdv() {
-    return loopSub.banWord(language.intensifiers, language.adjectives);
-  }
-
-  */
-
 
 
 
 
 }
+
+
+
+
+
+
+
+/*
+function loopSubmitButtonHandler(func) {
+  return function () {
+  func();
+  loopSubmitContainer.innerHTML = '';
+  randomizeOptionButtons()};
+
+}
+
+function loopOptionButtonHandler (n) {
+  return function () {
+  loopOptionsContainer.innerHTML = '';
+  button = document.createElement('button');
+  button.id = 'loop-submit-button';
+  button.innerText = 'Submit';
+  //loopSubmitContainer.hidden = false;
+  //add event handler for button
+  let functionForHandler = loop.createLoopInputs(n)
+  let handler = loopSubmitButtonHandler(functionForHandler);
+  loopSubmitContainer.appendChild(button);
+  button.addEventListener('click', handler)
+  };
+}
+
+function createOptionButton(n, str) {
+  let button = document.createElement('button');
+  button.innerText = str;
+  button.class = 'option-button';
+  loopOptionsContainer.appendChild(button);
+  let handler = loopOptionButtonHandler(n);
+  button.addEventListener('click', handler);
+}
+
+
+function randomizeOptionButtons () {
+  //this is the start of the loop, so we generate a new sentence
+  language.complexity += 0.07;
+  sentenceBox.innerText = language.randomSentence();
+  //button 1: nouns
+  if (Math.random() > 0.5) {
+    createOptionButton(0, 'Teach a new noun');
+  }
+  else {
+    createOptionButton(1, 'Increase usage frequency of a known noun')
+  }
+
+  //button 2: verbs
+  let verbRandom = Math.random();
+
+  if (verbRandom > 0.75) {
+    createOptionButton(2, 'Teach a new intransitive verb');
+  }
+  else if (verbRandom > 0.35) {
+    createOptionButton(3, 'Teach a new transitive verb');
+  }
+  else {
+    createOptionButton(4, 'Incease the usage frequence of a known verb')
+  }
+
+  //button 3: Adjectives / Adverbs
+  let adjRandom = Math.random();
+
+  if (adjRandom > 0.7) {
+    createOptionButton(5, 'Teach a new adjective');
+  }
+  else if (adjRandom > 0.4) {
+    createOptionButton(6, 'Increase the usage frequence of a known adjective');
+  }
+  else if (adjRandom > 0.2) {
+    createOptionButton(7, 'Teach a new adverb');
+  } 
+  else {
+    createOptionButton(8, 'Increase the usage frequency of a known adverb');
+  }
+
+  //button 4: bans
+  let banRandom = Math.random();
+
+  if (banRandom > 0.8) {
+    createOptionButton(9, 'Ban cominbation: determiner and noun');
+  }
+  else if (banRandom > 0.6) {
+    createOptionButton(10, 'Ban combination: adjective and noun');
+  }
+  else if (banRandom > 0.4) {
+    createOptionButton(11, 'Ban combination: noun and verb');
+  }
+  else if (banRandom > 0.2) {
+    createOptionButton(12, 'Ban combination: verb and adverb');
+  }
+  else if (banRandom > 0.1) {
+    createOptionButton(13, 'Ban combination: intensifier and adjective');
+  }
+  else {
+    createOptionButton(14, 'Ban combination: intensifier and adverb');
+  }
+
+}
+
+
+*/
+
+
+
+

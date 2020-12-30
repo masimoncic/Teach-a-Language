@@ -28,10 +28,6 @@ startingWords = {
       form.appendChild(input);
     }
 
-    //define and bind all create functions
-
-
-
     
     //create submit button
     let button = document.createElement('button');
@@ -48,28 +44,14 @@ startingWords = {
   },
 
   createNouns() {
-    
-
-
+    //create input fields
     this.createForm(4, 'nouns');
+    //create event button and event listener
     let currentButton = document.getElementById('start-nouns-button');
     currentButton.addEventListener('click', startingWords.handleNouns);
   },
 
-  /*         
-      <div class='start-nouns' id='start-nouns'>
-        <h1>Start by teaching the robot 3 nouns.</h1>
-        <form id='startNounsForm'>
-          <input type='text' class='input' id='noun1'>
-          <input type='text' class='input' id='noun2'>
-          <input type='text' class='input' id='noun3'>
-          <button type='submit' class='button' id='start-nouns-button'>
-            Teach Nouns
-          </button>
-        </form>
-      </div>
-  */
-
+  //define noun button's event handler
   handleNouns() {
     //read user inputs
     for (i=0; i < 4; i++){
@@ -85,6 +67,7 @@ startingWords = {
 
   },
 
+  //these follow the same pattern as createNouns and handleNouns
   createIntrans() {
     this.createForm(2, 'intransitive verbs');
     let currentButton = document.getElementById('start-intransitive verbs-button');
@@ -154,7 +137,9 @@ startingWords = {
     let currentButton = document.getElementById('start-adverbs-button');
     currentButton.removeEventListener('click', startingWords.handleAdv);
     formContainer.innerHTML = '';
-    randomizeOptionButtons();
+
+    //this is the end of the starting sequence, so it falls the function to begin the main loop
+    loop.randomizeOptionButtons();
     
   },
 

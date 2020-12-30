@@ -1,7 +1,14 @@
 const language = {
-  
+  //complexity is used in randomSentence.  It is responsible for
+  //deciding the odds of elements appearing in a sentence.  
+  //Complexity goes up for each cycle of the loop.
   complexity: 0,
 
+  //wordType keys are arrays that store objects of the given type.
+  //objects have three components: 'name' is the word itself, 
+  //'freq' determiens the relative frequency that the word will appear
+  //'banned' contains an array of all words which cannot appear in combination
+  //with the given word.
   determiners: [
     {name: 'the', freq: 10, banned: []},
     {name: 'a', freq: 10, banned: []},
@@ -140,12 +147,25 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
     }
   },
 
+
+
+  // randomSentenceHelper checks the complexity value against rolls
+  //of Math.random to decide if a given part of speech will be 
+  //present in a sentence.  If it is, randomWord is called to
+  //determine the word.
+  //randomSentence also compares rolls of Math.random against complexity
+  //values to decide if the sentence will contain a relative clause.  
+  //this process repeats to create sentences with an arbitrary number of
+  //relative clauses.  
   
   randomSentence () {
     let sentenceArray = []
     let sentence1 = this.randomSentenceHelper();
+    //sentence Array tracks each relative clause generated
     sentenceArray.push(sentence1);
     let num = Math.random();
+    //loop continues to generate relative clauses until it fails to meet
+    //the random check.
     while(num < Math.min(.85, this.complexity)) {
       let conj = this.randomWord(this.conjunctions);
       sentenceArray.push(conj);
@@ -154,9 +174,11 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
       num = Math.random();
     }
     joinedSentence = sentenceArray.join(' ');
+    //change the first letter to uppercase and replace the last ',' with a '.'
     fullSentence = joinedSentence[0].toUpperCase() + joinedSentence.slice(1, joinedSentence.length -1) + '.';
     return fullSentence;
   },
+
 
   randomSentenceHelper () {
     let noun1 = this.randomWord(this.nouns) + ' ';
@@ -200,7 +222,9 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
           intens3 = this.randomWord(this.intensifiers, adv) + ' ';
         }
     }
+    
     let sentence = det1 + intens1 + adj1 + noun1 + intens3 + adv + verb  + det2 + intens2 + adj2 + noun2;
+    //remove the last ' ' and replace it with a ','.
     return sentence.slice(0, sentence.length -1) + ',';
   }
 

@@ -1,34 +1,34 @@
-loopSub = {
+loopHandlerSubFunctions = {
   addNoun() {
-    return loop.addWord(language.nouns);
+    return loopHandlerFunctions.addWord(language.nouns);
   },
 
   addTrans() {
-    return loop.addWord(language.transitiveVerbs);
+    return loopHandlerFunctions.addWord(language.transitiveVerbs);
   },
 
   addIntrans(){
-    return loop.addWord(language.intransitiveVerbs);
+    return loopHandlerFunctions.addWord(language.intransitiveVerbs);
   },
 
   addAdj() {
-    return loop.addWord(language.adjectives);
+    return loopHandlerFunctions.addWord(language.adjectives);
   },
 
   addAdv() {
-    return loop.addWord(language.adverbs);
+    return loopHandlerFunctions.addWord(language.adverbs);
   },
 
   nounFreq() {
-    return loop.increaseFreq(language.nouns);
+    return loopHandlerFunctions.increaseFreq(language.nouns);
   },
 
   adjFreq() {
-    return loop.increaseFreq(language.adjectives);
+    return loopHandlerFunctions.increaseFreq(language.adjectives);
   },
 
   advFreq() {
-    return loop.increaseFreq(language.adverbs);
+    return loopHandlerFunctions.increaseFreq(language.adverbs);
   },
 
   verbFreq() {
@@ -62,27 +62,27 @@ loopSub = {
   */
 
   banDetNoun() {
-    return loop.banWord(language.determiners, language.nouns);
+    return loopHandlerFunctions.banWord(language.determiners, language.nouns);
   },
 
   banAdjNoun() {
-    return loop.banWord(language.adjectives, language.nouns);
+    return loopHandlerFunctions.banWord(language.adjectives, language.nouns);
   },
 
   banNounVerb() {
-    return loop.banWord(language.nouns, language.transitiveVerbs);
+    return loopHandlerFunctions.banWord(language.nouns, language.transitiveVerbs);
   },
 
   banVerbAdv() {
-    return loop.banWord(language.adverbs, language.transitiveVerbs, language.intransitiveVerbs);
+    return loopHandlerFunctions.banWord(language.adverbs, language.transitiveVerbs, language.intransitiveVerbs);
   },
 
   banIntAdj() {
-    return loop.banWord(language.intensifiers, language.adjectives);
+    return loopHandlerFunctions.banWord(language.intensifiers, language.adjectives);
   },
 
   banIntAdv() {
-    return loop.banWord(language.intensifiers, language.adjectives);
+    return loopHandlerFunctions.banWord(language.intensifiers, language.adjectives);
   }
 
 

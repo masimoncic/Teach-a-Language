@@ -2,6 +2,10 @@
 and storing all word data.
 functionality related to the initial word input is handled with the startingWords object, 
 defined in start.js.
+After the starting sequence, the programs goes into a loop between 2 states.  loopHandlers.js
+is responsible for setting up the first state, and creating all event handlers.
+loop.js sets up the UI for the second state, and calls a function from loopSub.js for its 
+return value.  This function is then passed into an event handler in loopHandlers.js.
 
 */
 "use strict";
@@ -10,31 +14,16 @@ const loopOptionsContainer = document.getElementById('loop-options-container');
 const loopSubmitContainer = document.getElementById('loop-submit-container');
 const loopContainer = document.getElementById('loop-container');
 const sentenceBox = document.getElementById('sentence-box');
-//bind all necessary functions
+//bind all necessary functions for startingWords.
 let boundIntrans = startingWords.createIntrans.bind(startingWords);
 let boundTrans = startingWords.createTrans.bind(startingWords);
 let boundAdj = startingWords.createAdj.bind(startingWords);
 let boundAdv = startingWords.createAdv.bind(startingWords);
 //let boundLoop = loop.loopIteration.bind(loop);
 //initialize starting sequence
+//one initialized, the rest of the program runs through chains of functions.
 startingWords.createNouns();
 
-/*
-function placeholderFunction (e) {
-  e.preventDefault();
-}
-form.addEventListener('submit', placeholderFunction)
-*/
-
-function testSent () {
-  let sum = 0;
-  for (let i=0; i<100; i++) {
-    let temp = language.randomSentence();
-    sum += temp.length;
-    console.log(temp);
-  }
-  console.log(sum/100);
-}
 
 
 
