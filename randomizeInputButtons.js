@@ -12,16 +12,19 @@ it recieved, then runs randomizeOptionButtons again to return to stage 1.
 */
 
 function loopSubmitButtonHandler(func) {
+  return function () {
   func();
   loopSubmitContainer.innerHTML = '';
+  randomizeOptionButtons()};
 
 }
 
 function loopOptionButtonHandler (n) {
-  return function () {loop.functionFinder = n;
+  return function () {
   loopOptionsContainer.innerHTML = '';
   button = document.createElement('button');
   button.id = 'loop-submit-button';
+  button.innerText = 'Submit';
   //loopSubmitContainer.hidden = false;
   //add event handler for button
   let functionForHandler = loop.createLoopInputs(n)
@@ -46,7 +49,7 @@ function randomizeOptionButtons () {
   language.complexity ++;
   sentenceBox.innerText = language.randomSentence();
   //button 1: nouns
-  if (Math.random > 0.5) {
+  if (Math.random() > 0.5) {
     createOptionButton(0, 'Teach a new noun');
   }
   else {
@@ -54,7 +57,7 @@ function randomizeOptionButtons () {
   }
 
   //button 2: verbs
-  let verbRandom = Math.random;
+  let verbRandom = Math.random();
 
   if (verbRandom > 0.75) {
     createOptionButton(2, 'Teach a new intransitive verb');
@@ -67,7 +70,7 @@ function randomizeOptionButtons () {
   }
 
   //button 3: Adjectives / Adverbs
-  let adjRandom = Math.random;
+  let adjRandom = Math.random();
 
   if (adjRandom > 0.7) {
     createOptionButton(5, 'Teach a new adjective');
@@ -83,7 +86,7 @@ function randomizeOptionButtons () {
   }
 
   //button 4: bans
-  let banRandom = Math.random;
+  let banRandom = Math.random();
 
   if (banRandom > 0.8) {
     createOptionButton(9, 'Ban cominbation: determiner and noun');
