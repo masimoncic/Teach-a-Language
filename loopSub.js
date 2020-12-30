@@ -35,15 +35,15 @@ loopSub = {
     let input = document.getElementById('loop-input1');
     let inputVal = input.value;
     for (let i =0; i < language.intransitiveVerbs.length; i++) {
-      if(wordType[i].name === inputVal) {
-        wordType[i].freq += 10;
+      if(language.intransitiveVerbs[i].name === inputVal) {
+        language.intransitiveVerbs[i].freq += 10;
         //clean up function
         return;
       }
     }
     for (let i =0; i < language.transitiveVerbs.length; i++) {
-      if(wordType[i].name === inputVal) {
-        wordType[i].freq += 10;
+      if(language.transitiveVerbs.name === inputVal) {
+        language.transitiveVerbs.freq += 10;
         //clean up function
         return;
     }

@@ -191,11 +191,19 @@ loop = {
     for (let i=0; i < wordType1.length; i++) {
       if(wordType1[i].name === inputVal) {
         wordType1[i].banned.push(input2Val);
+        for(let i=0; i < wordType2.length; i++) {
+          if(wordType2[i].name === input2Val) {
+            wordType2[i].banned.push(inputVal);
+          }
+        }
       }
     }
     for (let i=0; i < wordType2.length; i++) {
       if(wordType2[i].name === inputVal) {
         wordType2[i].banned.push(inputVal);
+        for(let i=0; i < wordType1.length; i++) {
+          wordType1[i].banned.push(inputVal2);
+        }
         //clean up function
       }
     }

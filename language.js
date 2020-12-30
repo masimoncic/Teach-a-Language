@@ -1,7 +1,7 @@
 const language = {
   
   complexity: 0,
-  
+
   determiners: [
     {name: 'the', freq: 10, banned: []},
     {name: 'a', freq: 10, banned: []},
@@ -146,7 +146,7 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
     let sentence1 = this.randomSentenceHelper();
     sentenceArray.push(sentence1);
     let num = Math.random();
-    while(num > 0.7) {
+    while(num < Math.min(.85, this.complexity)) {
       let conj = this.randomWord(this.conjunctions);
       sentenceArray.push(conj);
       tempSentence = this.randomSentenceHelper();
@@ -170,37 +170,37 @@ adjectives: [{name: 'a', freq: 25, banned: ['g1']}, {name: 'b', freq: 25, banned
     let intens1 = '';
     let intens2 = '';
     let intens3 = '';
-    if (Math.random() > 0.3) {
+    if (Math.random() < Math.min(.90, this.complexity * 2)) {
         det1 = this.randomWord(this.determiners, noun1) + ' ';
     }
-    if (Math.random() > 0.45) {
+    if (Math.random() < Math.min(.90, this.complexity * 2)) {
         adj1 = this.randomWord(this.adjectives, noun1) + ' ';
-        if(Math.random() > 0.7) {
+        if(Math.random() > this.complexity * 0.4) {
           intens1 = this.randomWord(this.intensifiers, adj1) + ' ';
         }
     }
-    if (Math.random() > 0.35) {
+    if (Math.random() < Math.min(.6, .2 + this.complexity *1)) {
         verb = this.randomWord(this.transitiveVerbs, noun1) + ' ';
         noun2 = this.randomWord(this.nouns, verb) + ' ';
-        if (Math.random() > 0.45) {
+        if (Math.random() < Math.min(.90, this.complexity * 2)) {
             adj2 = this.randomWord(this.adjectives, noun2) + ' ';
-            if(Math.random() > 0.7) {
+            if(Math.random() < Math.min(.80, this.complexity * 0.4)) {
               intens2 = this.randomWord(this.intensifiers, adj2) + ' ';
             }
         }
-        if (Math.random() > 0.3) {
+        if (Math.random() < Math.min(.90, this.complexity * 2)) {
             det2 = this.randomWord(this.determiners, noun2) + ' ';
         }
     } else {
         verb = this.randomWord(this.intransitiveVerbs, noun1) + ' ';
     }
-    if (Math.random() > 0.45) {
+    if (Math.random() < Math.min(.90, this.complexity *1.5)) {
         adv = this.randomWord(this.adverbs, verb) + ' ';
-        if(Math.random() > 0.7) {
+        if(Math.random() < Math.min(.80, this.complexity *0.4)) {
           intens3 = this.randomWord(this.intensifiers, adv) + ' ';
         }
     }
-    let sentence = det1 + intens1 + adj1 + noun1 + verb + intens3 + adv + det2 + intens2 + adj2 + noun2;
+    let sentence = det1 + intens1 + adj1 + noun1 + intens3 + adv + verb  + det2 + intens2 + adj2 + noun2;
     return sentence.slice(0, sentence.length -1) + ',';
   }
 

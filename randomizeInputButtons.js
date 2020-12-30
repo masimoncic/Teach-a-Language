@@ -46,7 +46,7 @@ function createOptionButton(n, str) {
 
 function randomizeOptionButtons () {
   //this is the start of the loop, so we generate a new sentence
-  language.complexity ++;
+  language.complexity += 0.07;
   sentenceBox.innerText = language.randomSentence();
   //button 1: nouns
   if (Math.random() > 0.5) {
