@@ -13,9 +13,8 @@ startingWords = {
     
     //create form title
     let h1 = document.createElement('h1');
-    h1.class = 'form-title';
     h1.innerText = `Teach the robot ${n} ${wordType}.`
-
+    h1.className = 'display-6 col-3 input-header'
     let form = document.createElement('div')
     //form.setAttribute('action', '');
     
@@ -32,7 +31,7 @@ startingWords = {
     //create submit button
     let button = document.createElement('button');
     //button.setAttribute('type', 'submit');
-    button.class = 'button';
+    button.className = 'button btn btn-warning start-button';
     button.id = `start-${wordType}-button`;
     button.innerText = `Teach ${wordType}`
 

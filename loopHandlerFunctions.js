@@ -8,6 +8,7 @@ loopHandlerFunctions = {
     let label1= document.createElement('label');
     label1.for = 'loop-input1';
     label1.id = 'loop-label1';
+    label1.className = 'input-header'
     let input1 = document.createElement('input');
     input1.setAttribute('type', 'text');
     input1.id = 'loop-input1';
@@ -52,6 +53,7 @@ loopHandlerFunctions = {
         let label2= document.createElement('label');
         label2.for = 'loop-input2';
         label2.id = 'loop-label2';
+        label2.className = 'input-header'
         let input2 = document.createElement('input');
         input2.setAttribute('type', 'text');
         input2.id = 'loop-input2';
@@ -202,7 +204,7 @@ loopHandlerFunctions = {
       if(wordType2[i].name === inputVal) {
         wordType2[i].banned.push(inputVal);
         for(let i=0; i < wordType1.length; i++) {
-          wordType1[i].banned.push(inputVal2);
+          wordType1[i].banned.push(input2Val);
         }
         //clean up function
       }

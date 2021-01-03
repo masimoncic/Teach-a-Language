@@ -21,7 +21,7 @@ loop = {
   createOptionButton(n, str) {
     let button = document.createElement('button');
     button.innerText = str;
-    button.class = 'option-button';
+    button.className = 'option-button btn btn-warning col-6';
     loopOptionsContainer.appendChild(button);
     let handler = this.loopOptionButtonHandler(n);
     let boundHandler = handler.bind(loop);
@@ -108,6 +108,7 @@ loop = {
     return function () {
     loopOptionsContainer.innerHTML = '';
     button = document.createElement('button');
+    button.className = 'button btn btn-warning';
     button.id = 'loop-submit-button';
     button.innerText = 'Submit';
     //loopSubmitContainer.hidden = false;
